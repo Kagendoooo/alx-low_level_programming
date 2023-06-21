@@ -6,23 +6,21 @@
 */
 int main(void)
 {
-	long long int x = 1;
-	long long int y = 2;
-	long long int z = 0;
+	int i = 0;
+	long a = 1, b = 2, sum = b;
 
-	while (y <= 4000000)
+
+	while (b + a <= 4000000)
 	{
-		if (y % 2 == 0)
+		b += a;
+		if (b % 2 == 0)
 		{
-			z += y;
+			sum += b;
 		}
-
-		long long int next = x + y;
-
-		x = y;
-		y = next;
+		a = b - a;
+		++i;
 	}
 
-	printf("%lld\n", z);
+	printf("%ld\n", sum);
 	return (0);
 }
