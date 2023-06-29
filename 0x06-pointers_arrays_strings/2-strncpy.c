@@ -16,7 +16,7 @@ char *_strncpy(char *dest, char *src, int n)
 		y++;
 	}
 
-	while (y < n && src[x])
+	while (x < n && src[x])
 	{
 		dest[x] = src[x];
 		x++;
