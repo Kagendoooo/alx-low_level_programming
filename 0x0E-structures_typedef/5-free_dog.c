@@ -2,8 +2,8 @@
 #include <stdlib.h>
 /**
  * free_dog - Frees dogs
- * @d: dog to be freed 
- */
+ * @d: dog to be freed
+*/
 void free_dog(dog_t *d)
 {
 	if (d == NULL)
