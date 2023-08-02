@@ -6,27 +6,25 @@
  */
 size_t free_listint_safe(listint_t **h)
 {
-	size_t node = 0;
-	listint_t *head, *temp;
-	long tmp;
+	listint_t *temp = *h, *node;
+	unsigned int count = 0;
 
-	if (!h)
-	{
+	if (temp == 0 || h == 0)
 		return (0);
-	}
-	head = *h;
-	*h = NULL;
-	while (head)
+
+	temp = *h;
+	while (temp != 0)
 	{
-		node++;
-		tmp = head->next - head;
-		temp = head;
-		free(temp);
-		if (tmp >= 0)
-		{
+		node = temp;
+		temp = temp->next;
+		count++;
+
+		free(node);
+
+		if (node <= temp)
 			break;
-		}
-		head = head->next;
 	}
-	return (node);
+
+	*h = 0;
+	return (count);
 }
