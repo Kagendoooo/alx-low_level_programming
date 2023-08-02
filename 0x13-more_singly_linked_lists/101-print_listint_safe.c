@@ -1,5 +1,5 @@
 #include "lists.h"
-
+#include <stdio.h>
 /**
  * print_listint_safe - prints a list
  * @head: pointer to head of a list
@@ -7,19 +7,25 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	if (head)
-	{
-		printf("[%p] %d\n", (void *)head, head->n);
-		if (head->next < head)
-		{
-			return (1 + print_listint_safe(head->next));
-		}
-		else
-		{
-			printf("-> [%p] %d\n", (void *)head->next, head->next->n);
-			return (1);
-		}
+	size_t node_count = 0;
+	const listint_t *current = head;
+	const listint_t *temp;
 
+	while (current != NULL)
+	{
+		printf("[%p] %d\n", (void *)current, current->n);
+		node_count++;
+
+		temp = current;
+		current = current->next;
+
+		/* Check for a loop */
+		if (temp <= current)
+		{
+			printf("-> [%p] %d\n", (void *)current, current->n);
+			exit(98);
+		}
 	}
-	return (0);
+
+	return (node_count);
 }
